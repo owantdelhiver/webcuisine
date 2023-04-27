@@ -30,21 +30,8 @@ public class RecetteDAO implements GenericDAO<Recette> {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                try(PreparedStatement preparedStatement1 = connection.prepareStatement("SELECT id, libelle, image, ri.quantite FROM ingredient INNER JOIN recette_ingredient ri on ingredient.id = ri.id_ingredient WHERE ri.id_recette = ? ")) {
-                    preparedStatement1.setInt(1, resultSet.getInt("recette.id"));
-                    ResultSet resultSet1 = preparedStatement1.executeQuery();
 
-                    ingredients = new ArrayList<>();
-                    while (resultSet1.next()) {
-                        ingredients.add(new Ingredient(
-                                resultSet1.getInt("id"),
-                                resultSet1.getString("libelle"),
-                                resultSet1.getString("image"),
-                                resultSet1.getInt("ri.quantite")
-                        ));
-                    }
-
-                }
+                ingredients = new IngredientDAO().findByRecetteId(resultSet.getInt("recette.id"));
 
                 recettes.add(new Recette(
                         resultSet.getInt("recette.id"),
@@ -61,7 +48,6 @@ public class RecetteDAO implements GenericDAO<Recette> {
                         ingredients
                 ));
             }
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

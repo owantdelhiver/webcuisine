@@ -18,7 +18,7 @@ public abstract class DB {
                 String path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
                 properties.load( new FileInputStream(path + "app.properties"));
 
-                DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+                DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
                 connection = DriverManager.getConnection(properties.getProperty("bdd_url"),properties.getProperty("bdd_user") , properties.getProperty("bdd_password") );
             } catch (SQLException | IOException e) {
                 throw new RuntimeException(e);
