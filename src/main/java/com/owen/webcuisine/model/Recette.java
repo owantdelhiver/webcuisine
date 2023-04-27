@@ -1,6 +1,7 @@
 package com.owen.webcuisine.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Recette {
     private int id;
@@ -11,9 +12,9 @@ public class Recette {
     private int nombre_personne;
     private String etapes;
     private Categorie categorie;
-    private Date derniere_vu;
+    private List<Ingredient> ingredients;
 
-    public Recette(int id, String titre, int temps, String difficulte, String cout, int nombre_personne, String etapes, Categorie categorie) {
+    public Recette(int id, String titre, int temps, String difficulte, String cout, int nombre_personne, String etapes, Categorie categorie, List<Ingredient> ingredients) {
         this.id = id;
         this.titre = titre;
         this.temps = temps;
@@ -22,18 +23,7 @@ public class Recette {
         this.nombre_personne = nombre_personne;
         this.etapes = etapes;
         this.categorie = categorie;
-    }
-
-    public Recette(int id, String titre, int temps, String difficulte, String cout, int nombre_personne, String etapes, Categorie categorie, Date derniere_vu) {
-        this.id = id;
-        this.titre = titre;
-        this.temps = temps;
-        this.difficulte = difficulte;
-        this.cout = cout;
-        this.nombre_personne = nombre_personne;
-        this.etapes = etapes;
-        this.categorie = categorie;
-        this.derniere_vu = derniere_vu;
+        this.ingredients = ingredients;
     }
 
     public int getId() {
@@ -66,5 +56,9 @@ public class Recette {
 
     public Categorie getCategorie() {
         return categorie;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
     }
 }
