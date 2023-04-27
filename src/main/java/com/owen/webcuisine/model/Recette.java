@@ -6,6 +6,8 @@ import java.util.List;
 public class Recette {
     private int id;
     private String titre;
+    private String description;
+    private String image;
     private int temps;
     private String difficulte;
     private String cout;
@@ -14,9 +16,11 @@ public class Recette {
     private Categorie categorie;
     private List<Ingredient> ingredients;
 
-    public Recette(int id, String titre, int temps, String difficulte, String cout, int nombre_personne, String etapes, Categorie categorie, List<Ingredient> ingredients) {
+    public Recette(int id, String titre,String description,String image, int temps, String difficulte, String cout, int nombre_personne, String etapes, Categorie categorie, List<Ingredient> ingredients) {
         this.id = id;
         this.titre = titre;
+        this.description = description;
+        this.image = image;
         this.temps = temps;
         this.difficulte = difficulte;
         this.cout = cout;
@@ -60,5 +64,13 @@ public class Recette {
 
     public List<Ingredient> getIngredients() {
         return ingredients;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getImage() {
+        return image;
     }
 }

@@ -24,7 +24,7 @@ public class RecetteDAO implements GenericDAO<Recette> {
         List<Ingredient> ingredients;
 
         Connection connection = DB.getConnection();
-        try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT recette.id, titre, temps, difficulte, cout, nombre_personne, etapes, categorie.id, categorie.libelle\n" +
+        try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT recette.id, titre,description,image, temps, difficulte, cout, nombre_personne, etapes, categorie.id, categorie.libelle\n" +
                 "FROM recette\n" +
                 "LEFT JOIN categorie ON categorie.id = recette.id_categorie;")) {
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -36,6 +36,8 @@ public class RecetteDAO implements GenericDAO<Recette> {
                 recettes.add(new Recette(
                         resultSet.getInt("recette.id"),
                         resultSet.getString("titre"),
+                        resultSet.getString("description"),
+                        resultSet.getString("image"),
                         resultSet.getInt("temps"),
                         resultSet.getString("difficulte"),
                         resultSet.getString("cout"),

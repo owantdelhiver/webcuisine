@@ -20,11 +20,14 @@ public class FilterServlet extends HttpFilter {
         HttpServletResponse httpServletResponse = (HttpServletResponse) res;
         HttpSession httpSession = httpServletRequest.getSession();
 
-        if(httpServletRequest.getRequestURI().equals(httpServletRequest.getContextPath() + "/login") || httpServletRequest.getRequestURI().contains(httpServletRequest.getContextPath() + "/webapi")) {
+        if(httpServletRequest.getRequestURI().equals(httpServletRequest.getContextPath() + "/connexion")
+                || httpServletRequest.getRequestURI().contains(httpServletRequest.getContextPath() + "/webapi")
+                || httpServletRequest.getRequestURI().contains(httpServletRequest.getContextPath() + "/")
+        ) {
             chain.doFilter(req, res);
         } else {
             if (httpSession.getAttribute("username") == null) {
-                httpServletResponse.sendRedirect(getServletContext().getContextPath() + "/login");
+                httpServletResponse.sendRedirect(getServletContext().getContextPath() + "/connexion");
             } else {
                 chain.doFilter(req, res);
             }
