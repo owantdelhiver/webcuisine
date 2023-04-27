@@ -26,7 +26,7 @@ public class FilterServlet extends HttpFilter {
         ) {
             chain.doFilter(req, res);
         } else {
-            if (httpSession.getAttribute("username") == null) {
+            if (httpSession.getAttribute("email") == null) {
                 httpServletResponse.sendRedirect(getServletContext().getContextPath() + "/connexion");
             } else {
                 chain.doFilter(req, res);

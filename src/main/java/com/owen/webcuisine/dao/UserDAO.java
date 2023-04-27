@@ -40,9 +40,9 @@ public class UserDAO implements GenericDAO<User>{
         User user = null;
         try(PreparedStatement preparedStatement = connection.prepareStatement("SELECT id, nom, prenom, email, image, mot_de_passe FROM user WHERE email LIKE ? AND mot_de_passe LIKE ? ")) {
             preparedStatement.setString(1, email);
-            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, password);
 
-            ResultSet resultSet = preparedStatement.getResultSet();
+            ResultSet resultSet = preparedStatement.executeQuery();
             if(resultSet.next()) {
                 user = new User(
                         resultSet.getInt("id"),

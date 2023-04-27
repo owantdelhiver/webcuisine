@@ -14,12 +14,18 @@
 
     <div class="collapse navbar-collapse d-flex justify-content-end">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link" href="${pageContext.request.contextPath}/connexion">Connexion</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/deconnexion">Deconnexion</a>
-            </li>
+            <c:choose>
+                <c:when test="${sessionScope.email != null}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/deconnexion">Deconnexion</a>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <li class="nav-item">
+                        <a class="nav-link" href="${pageContext.request.contextPath}/connexion">Connexion</a>
+                    </li>
+                </c:otherwise>
+            </c:choose>
         </ul>
     </div>
 </nav>
